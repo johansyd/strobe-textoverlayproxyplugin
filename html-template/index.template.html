@@ -1,0 +1,36 @@
+<html>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">                     
+                <style type="text/css">
+                        * {
+                                margin: 0;
+                                padding: 0;
+                        }
+                        #parent {
+                                width: 640px;
+                                height: 400px;
+                                border: 1px solid black;
+                                background-color: pink;
+                        }
+                </style>
+        </head>
+        <body>
+            <div id="parent"></div>
+            <script type="text/javascript" src="http://aftonbladet-play.videodata.drvideo.aptoma.no/staging/js/all/"></script>
+
+            <script type="text/javascript">
+                DrVideo._customer.strobeOverloadFunctions.push(function(vars, pos){
+                    DrVideo._customer.swfPath = '';
+                    DrVideo._customer.strobeFilename = 'StrobeMediaPlayback.swf';
+                    vars.plugin_Base64ImageGeneratorPlugin = 'Base64ImageGeneratorPlugin.swf';
+                    vars.controlBarMode = 'docked';
+                });
+
+                var options = {
+                    'autoplay': true
+                };
+
+                DrVideo.API.play('50bcc97acdcd85df52000100', 'parent', options);
+            </script>
+        </body>
+</html>
