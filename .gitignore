@@ -1,0 +1,7 @@
+bin-debug/*
+.project
+.settings
+html-template/expressInstall.swf
+html-template/history
+html-template/swfobject.js
+.actionScriptProperties
