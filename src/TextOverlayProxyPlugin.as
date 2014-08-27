@@ -80,8 +80,7 @@ package
 		 */
 		private function onAddedToStage(event:Event):void
 		{
-			if (!event.target.hasOwnProperty('parent'))
-			{
+			if (!event.target.hasOwnProperty('parent')) {
 				console.error(
 					'TextOverlayProxyPlugin : Could not find property parent for the event.target property'
 				);
@@ -89,8 +88,7 @@ package
 			}
 			
 			var displayable:DisplayObject = event.target.parent;
-			if (!displayable.hasOwnProperty('stage'))
-			{
+			if (!displayable.hasOwnProperty('stage')) {
 				console.error(
 					'TextOverlayProxyPlugin : Could not find property stage for the parent property '
 					+ 'of the current event target. '
