@@ -131,23 +131,5 @@ package
 			this.text.x = xPos;
 			this.text.y = yPos;
 		}
-
-		/*
-		private static function call(args:Array, async:Boolean = true):void {
-			if (async) {
-				var asyncTimer:Timer = new Timer(10, 1);
-				asyncTimer.addEventListener(TimerEvent.TIMER, 
-					function(event:Event):void
-					{
-						asyncTimer.removeEventListener(TimerEvent.TIMER, arguments.callee);
-						ExternalInterface.call.apply(ExternalInterface, args);
-					}
-				);
-				asyncTimer.start();
-				return;
-			}
-			ExternalInterface.call.apply(ExternalInterface, args);
-		}
-		*/
 	}
 }
