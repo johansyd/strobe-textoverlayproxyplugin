@@ -22,7 +22,8 @@
                 DrVideo._customer.strobeOverloadFunctions.push(function(vars, pos){
                     DrVideo._customer.swfPath = '';
                     DrVideo._customer.strobeFilename = 'StrobeMediaPlayback.swf';
-                    vars.plugin_Base64ImageGeneratorPlugin = 'Base64ImageGeneratorPlugin.swf';
+                    vars.plugin_TextOverlayProxyPlugin = 'TextOverlayProxyPlugin.swf';
+                    delete vars.plugin_CBarPlugin;
                     vars.controlBarMode = 'docked';
                 });
 
