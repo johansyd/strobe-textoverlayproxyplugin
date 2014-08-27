@@ -18,14 +18,14 @@ package
 	import org.osmf.traits.DisplayObjectTrait;
 	import org.osmf.traits.MediaTraitType;
 	
-	public class Base64ImageGeneratorPlugin extends Sprite
+	public class TextOverlayProxyPlugin extends Sprite
 	{
-		private static var ID:String = 'http://drvideo.aptoma.no/Base64ImageGeneratorPlugin.swf';
+		private static var ID:String = 'http://drvideo.aptoma.no/TextOverlayProxyPlugin.swf';
 		private var _pluginInfo:PluginInfo;
 		private var stage:Stage;
 		private var text:TextField;
 		
-		public function Base64ImageGeneratorPlugin()
+		public function TextOverlayProxyPlugin()
 		{
 			Security.allowDomain('*');
 			super();
