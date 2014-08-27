@@ -83,7 +83,7 @@ package
 			if (!event.target.hasOwnProperty('parent'))
 			{
 				console.error(
-					'Base64ImageGeneratorPlugin : Could not find property parent for the event.target property '
+					'TextOverlayProxyPlugin : Could not find property parent for the event.target property '
 					+ 'This plugin is only compatible with Strobe 1.6'
 				);
 				return;
@@ -93,7 +93,7 @@ package
 			if (!displayable.hasOwnProperty('stage'))
 			{
 				console.error(
-					'Base64ImageGeneratorPlugin : Could not find property stage for the parent property '
+					'TextOverlayProxyPlugin : Could not find property stage for the parent property '
 					+ 'of the current event target. '
 					+ 'This plugin is only compatible with Strobe 1.6'
 				);
