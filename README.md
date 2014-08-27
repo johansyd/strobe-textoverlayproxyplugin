@@ -30,7 +30,8 @@ If you want to just work in a folder directly on the root of your webserver you 
 Open http://localhost/textoverlayproxyplugin in your webbrowser
 From the chrome console or Firebug. Do the following
 
-    DrVideo._positions.get().dom.node.addTextOverlay("Hello World",0,0);
+    DrVideo._position.get().dom.node.addTextOverlay("Hello 
+World",100,100);
 
 ####Debugging
 
