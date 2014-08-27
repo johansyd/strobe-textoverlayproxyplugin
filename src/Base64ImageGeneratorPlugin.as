@@ -2,22 +2,19 @@ package
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.Event;
-	import flash.events.TimerEvent;
 	import flash.external.ExternalInterface;
 	import flash.system.Security;
-	import flash.utils.Timer;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 	
 	import org.osmf.events.MediaElementEvent;
-	import org.osmf.events.MediaFactoryEvent;
-	import org.osmf.media.DefaultMediaFactory;
 	import org.osmf.media.MediaElement;
-	import org.osmf.media.MediaFactory;
 	import org.osmf.media.MediaFactoryItem;
 	import org.osmf.media.MediaFactoryItemType;
 	import org.osmf.media.MediaResourceBase;
 	import org.osmf.media.PluginInfo;
-	import org.osmf.media.URLResource;
 	import org.osmf.traits.DisplayObjectTrait;
 	import org.osmf.traits.MediaTraitType;
 	
@@ -25,9 +22,8 @@ package
 	{
 		private static var ID:String = 'http://drvideo.aptoma.no/Base64ImageGeneratorPlugin.swf';
 		private var _pluginInfo:PluginInfo;
-		private var isPluginReady:Boolean = false;
-		private var isPluginReadyCallback:String;
-		
+		private var stage:Stage;
+		private var text:TextField;
 		
 		public function Base64ImageGeneratorPlugin()
 		{
@@ -86,7 +82,7 @@ package
 		{
 			if (!event.target.hasOwnProperty('parent'))
 			{
-				trace(
+				console.error(
 					'Base64ImageGeneratorPlugin : Could not find property parent for the event.target property '
 					+ 'This plugin is only compatible with Strobe 1.6'
 				);
@@ -96,7 +92,7 @@ package
 			var displayable:DisplayObject = event.target.parent;
 			if (!displayable.hasOwnProperty('stage'))
 			{
-				trace(
+				console.error(
 					'Base64ImageGeneratorPlugin : Could not find property stage for the parent property '
 					+ 'of the current event target. '
 					+ 'This plugin is only compatible with Strobe 1.6'
@@ -104,35 +100,39 @@ package
 				return;
 			}
 			
-			//ExternalInterface.addCallback('isBase64ImageGeneratorPluginReady', isBase64ImageGeneratorPluginReady);
-			//ExternalInterface.addCallback('registerForBase64ImageGeneratorPluginIsReadyEvent', isBase64ImageGeneratorPluginReady);
-			//ExternalInterface.addCallback('getBase64EncodedImage', getBase64EncodedImage);
-			//Base64ImageGeneratorPlugin.call([this.isPluginReadyCallback, true]);
-			/*
-			displayable.stage.addEventListener(
-				FullScreenEvent.FULL_SCREEN, onFullScreen
-			);
-			*/
+			this.text = new TextField();
+			this.text.text = 'Text';
+			this.text.textColor = 0xFFFFFF;
+			this.text.mouseEnabled = false;
+			this.setText("");
+			this.stage = displayable.stage;
+			this.stage.addChild(this.text);
+			
+			ExternalInterface.addCallback('addTextOverlay', addTextOverlay);
 		}
 		
+		public function setText(value:String):void
+		{
+			this.text.text = value;
+			var textFormat:TextFormat = new TextFormat();
+			textFormat.font = 'Arial';
+			textFormat.bold = new Boolean(true);
+			textFormat.size = new Number(14);
+			this.text.setTextFormat(textFormat);
+			this.text.width = this.text.textWidth + 10;
+		}
 		
-		
+		public function addTextOverlay(textValue,x,y):void
+		{
+			var value:String = textValue as String;
+			var xPos:Number = x as Number;
+			var yPos:Number = y as Number;
+			this.setText(value);
+			this.text.x = xPos;
+			this.text.y = yPos;
+		}
+
 		/*
-		public function isBase64ImageGeneratorPluginReady():Boolean
-		{
-			return this.isPluginReady;
-		}
-		
-		public function registerForBase64ImageGeneratorPluginIsReadyEvent(isPluginReadyCallback:String):void
-		{
-			this.isPluginReadyCallback = isPluginReadyCallback;
-		}
-		
-		public function getBase64EncodedImage():String
-		{
-			return 'getBase64EncodedImage';
-		}
-		
 		private static function call(args:Array, async:Boolean = true):void {
 			if (async) {
 				var asyncTimer:Timer = new Timer(10, 1);
